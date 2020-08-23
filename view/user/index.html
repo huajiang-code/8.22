@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {css href="__CSS__/bootstrap.min.css"}
+    {css href="__CSS__/style.css"}
+</head>
+<body>
+    
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-3 siadebar">
+                <div class="btn btn-info">用户管理</div>
+                <div class="btn btn-info">喜好管理</div>
+                <div class="btn btn-info">书籍管理</div>
+                <div class="btn btn-info">角色管理</div>
+                <div class="btn btn-info">权限管理</div>
+            </div>
+            <div class="col-md-9  main">
+
+                <!-- 搜索表单 -->
+                <form action="{:url('/user')}" class="form-inline">
+                    <div class="form-group">
+                        
+                            <label for="username">用户名:</label>
+                        
+                        
+                            <input type="text" class="form-control" id="username" name="username" placeholder="查询的用户名">
+                        
+                    </div>
+                    <div class="form-group">
+                      
+                            <label for="email">邮箱:</label>
+                       
+                        
+                            <input type="text" class="form-control " id="email" name="email" placeholder="查询的邮箱">
+                        
+                    </div>
+
+                    <div class="form-group"> 
+                        <label for="gender">性别：</label>
+                        <select name="gender" id="gender" class="form-control">
+                            <option value="" selected>选择性别</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <button class="btn btn-primary">搜索</button>
+                        <a href="{:url('/user/create')}" class="btn btn-success">添加用户</a>
+
+                    </div>
+                </form>
+
+                <!-- 数据列表 -->
+                <table class="table table-bordered" style="margin-top: 1rem;">
+                    <thead class="bg-light">
+                        <th class="text-center">ID</th>
+                        <th >用户名</th>
+                        <th class="text-center">性别</th>
+                        <th>邮箱</th>
+                        <th class="text-center">状态</th>
+                        <th class="text-center">创建时间</th>
+                        <th class="text-center">操作</th>
+                    </thead>
+                    <tbody>
+                        {assign name='empty' value='<tr><td colspan="7" class="text-center text-muted">没有数据</td></tr>'}
+                        {volist name='list' id='obj' empty='$empty'}
+                        <tr>
+                            <td class="text-center">{$obj.id}</td>
+                            <td>{$obj.username}</td>
+                            <td class="text-center">{$obj.gender}</td>
+                            <td>{$obj.email}</td>
+                            <td class="text-center">
+                                <span class="btn-xs btn-{$obj.badge}">{$obj.status}</span>
+                            </td>
+                            <td class="text-center">{$obj.create_time}</td>
+                            <td class="text-center">
+                                <button class="btn btn-danger btn-sm">删除</button>
+                                <button class="btn btn-warning btn-sm">修改</button>
+                            </td>
+                        </tr>
+                        {/volist}
+                    </tbody>
+                    
+                </table>
+
+                
+                {$list|raw}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {js href="__JS__/jquery-1.10.1.min.js"}
+    {js href="__JS__/bootstrap.min.js"}
+
+</body>
+</html>

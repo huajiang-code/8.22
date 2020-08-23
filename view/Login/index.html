@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {css href="__CSS__/bootstrap.min.css"}
+    {css href="__CSS__/login.css"}
+</head>
+
+<body>
+
+
+    <div class="login-box">
+        <form action="{:url('/login_check')}" method="post" class="form-horizontal" >
+            <div class="form-group">
+                <label for="name" class="col-sm-3 control-label">管理员</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="请输入你的账户">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="col-sm-3 control-label">密码</label>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="请输入你的密码">
+                </div>
+            </div>
+
+            <div class="form-group" >
+                <div  class="col-sm-3 control-label ">{:captcha_img()}</div>
+                <div class="col-sm-7 ">
+                    <input type="text" class="form-control" name="code" id="code" placeholder="验证码" >
+                </div>
+            </div>
+
+            <div class="form-group col-md-8 " style="margin-left: 40px;margin-top: 10px;">
+                <button class="btn btn-success btn-block">登录</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+    {js href="__JS__/jquery-1.10.1.min.js"}
+    {js href="__JS__/bootstrap.min.js"}
+
+</body>
+
+</html>

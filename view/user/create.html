@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {css href="__CSS__/bootstrap.min.css"}
+    {css href="__CSS__/style.css"}
+</head>
+<body>
+    
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-3 siadebar">
+                <div class="btn btn-info">用户管理</div>
+                <div class="btn btn-info">喜好管理</div>
+                <div class="btn btn-info">书籍管理</div>
+                <div class="btn btn-info">角色管理</div>
+                <div class="btn btn-info">权限管理</div>
+            </div>
+            <div class="col-md-9  main">
+                <!-- 添加用户 -->
+                <form action="{:url('/user')}" method="POST" class="form-inline">
+                    <fieldset class="w-75">
+                        <div  class="form-group">
+                            <label for="username" class="col-2">用户名：</label>
+                            
+                                <input type="text" id="username" name="username" class="form-control" placeholder="请输入用户名">
+                            
+                            
+                        </div>
+
+                    </fieldset>
+                
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    {js href="__JS__/jquery-1.10.1.min.js"}
+    {js href="__JS__/bootstrap.min.js"}
+
+</body>
+</html>

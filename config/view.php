@@ -24,8 +24,8 @@ return [
     'taglib_end'    => '}',
     
     'tpl_replace_string'=>[
-        '__JS__'=>'../static/js',
-        '__CSS__'=>'../static/css',
+        '__JS__'=>request()->domain().'/static/js',
+        '__CSS__'=>request()->domain().'/static/css',
         
     ]
 ];

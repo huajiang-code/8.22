@@ -25,7 +25,7 @@ Route::group(function () {
     Route::resource('user', 'User');
 
     //权限模块路由
-
+    Route::resource('auth', 'Auth');
 
 })->middleware(function($request, \Closure $next){
     if(!Session::get('wowowo'))
@@ -41,6 +41,24 @@ Route::group(function () {
 
 //登录模块路由
 Route::group(function () {
-    Route::get('login', 'Login/index');
+    Route::get('login', 'Login/index')->middleware(function($request, \Closure $next){
+        if(Session::get('wowowo'))
+        {
+            return redirect('/');
+        }
+        // dump(Session::get('wowowo'));
+        return $next($request);
+    });
+
     Route::post('login_check', 'Login/check');
+    Route::get('logout','Login/out');
 });
+
+
+
+
+//自己写的部分
+
+
+
+

@@ -47,12 +47,12 @@ class Login
         //判断跳转
 
         if(!empty($errors)){
-            // return view($this->toast,[
-            //     'infos'=>$errors,
-            //     'url_text'=>'返回登录',
-            //     'url_path'=>url('/login')
-            // ]);
-            dd($errors);
+            return view($this->toast,[
+                'infos'=>$errors,
+                'url_text'=>'返回登录',
+                'url_path'=>url('/login')
+            ]);
+            // dd($errors);
         }else{
             session('wowowo',$data['name']);
             return redirect('/user');
@@ -72,5 +72,11 @@ class Login
         //     'captcha'=>$data['code']
         // ]);
         // dump($result);
+    }
+
+    public function out()
+    {
+        session('wowowo',null);
+        return redirect('/login');
     }
 }

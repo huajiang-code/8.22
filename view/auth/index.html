@@ -1,0 +1,77 @@
+{extend name='public/base'}
+
+{block name='title'} 权限列表{/block}
+
+{block name='madin'}
+
+                <!-- 搜索表单 -->
+                <form action="{:url('/auth')}" class="form-inline">
+                  <div class="form-group">
+
+                      <label for="name">管理员:</label>
+
+
+                      <input type="text" class="form-control" id="name" name="name" placeholder="查询的管理员">
+
+                  </div>
+          
+
+                  <div class="form-group">
+                      <button class="btn btn-primary">搜索</button>
+                      <a href="{:url('/auth/create')}" class="btn btn-success">添加管理</a>
+
+                  </div>
+              </form>
+
+              <!-- 数据列表 -->
+              <table class="table table-bordered" style="margin-top: 1rem;" id="data-table">
+                  <thead class="bg-light">
+                      <th class="text-center">ID</th>
+                      <th>管理员</th>
+                      <th>权限范围</th>
+                      <th>操作</th>
+                  </thead>
+                  <tbody>
+
+                      {assign name='empty' value='<tr>
+                          <td colspan="7" class="text-center text-muted">没有数据</td>
+                      </tr>'}
+                      {volist name='list' id='obj' empty='$empty'}
+                      <tr>
+                          <td class="text-center">{$obj.id}</td>
+                          <td>{$obj.name}</td>
+                          <td>{$obj.roles}</td>
+                          <td class="text-center">
+                              <form action="{:url('/auth/'.$obj.id)}" method="post">
+                                  <input type="hidden" name="_method" value="delete">
+                                  <button class="btn btn-danger btn-sm" id="delete">删除</button>
+                               
+                                  <a href="{:url('/auth/'.$obj.id.'/edit')}" class="btn btn-warning btn-sm" id="modify">修改</a>
+                              </form>
+                          </td>
+                      </tr>
+                      {/volist}
+                  </tbody>
+
+              </table>
+
+
+              {$list|raw}
+
+
+              {/block}
+
+
+              {block name='js'}
+              <script>
+                $(function(){
+        
+                    $("#data-table").on('click','#delete',function(){
+                        let flag=confirm('您真的要删除这个数据吗?');
+                        return flag?true:false;
+                    })
+                    $('[data-toggle="tooltip"]').tooltip();
+                    
+                })
+            </script>
+             {/block}
